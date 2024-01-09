@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 
 const HomePage = () => {
   return (
@@ -11,17 +12,21 @@ const HomePage = () => {
       <View style={styles.overlay}>
         <Text style={styles.headerText}>Manage your Aerogarden</Text>
         <View style={styles.menuContainer}>
-          <TouchableOpacity style={styles.menuItem}>
+        <Link href="/home/plants" asChild>
+          <Pressable style={styles.menuItem}>
             <Text style={styles.menuText}>My Plants</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.menuItem}>
+          </Pressable>
+        </Link>
+        <Link href="/home/explore" asChild>
+          <Pressable style={styles.menuItem}>
             <Text style={styles.menuText}>Explore</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.menuItem}>
+          </Pressable>
+        </Link>
+        <Link href="/home/account" asChild>
+          <Pressable style={styles.menuItem}>
             <Text style={styles.menuText}>My Account</Text>
-          </TouchableOpacity>
+          </Pressable>
+          </Link>
         </View>
       </View>
     </View>
