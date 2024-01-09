@@ -6,15 +6,15 @@ const HomePage = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/images/plant.jpeg')}
-        style={styles.backgroundImage}
+        source={require('../assets/images/logo.jpeg')}
+        style={styles.startingImage}
       />
       <View style={styles.overlay}>
         <Text style={styles.headerText}>Manage your Aerogarden</Text>
         <View style={styles.menuContainer}>
         <Link href="/home/plants" asChild>
           <Pressable style={styles.menuItem}>
-            <Text style={styles.menuText}>My Plants</Text>
+            <Text style={styles.menuText}>My plants</Text>
           </Pressable>
         </Link>
         <Link href="/home/explore" asChild>
@@ -38,9 +38,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#AECBA4',
   },
+
+  startingImage: {
+   resizeMode: 'center',
+   heigh:100,
+   width: 200,
+   alignSelf: 'center',
+   
+    
+  },
+
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover', 
+    resizeMode: 'contain', 
     position: 'absolute',
     width: '100%',
     height: '100%',
@@ -50,6 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(174,203,164,0.8)', 
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
   },
   headerText: {
     fontSize: 24,
