@@ -1,33 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 
 const HomePage = () => {
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonPress = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/images/logo.jpeg')}
-        style={styles.startingImage}
-      />
-      <View style={styles.overlay}>
-        <Text style={styles.headerText}>Manage your Aerogarden</Text>
-        <View style={styles.menuContainer}>
+      <View style={styles.contentContainer}>
+        {selectedButton ? (
+          <Text>{`Page for ${selectedButton}`}</Text>
+        ) : (
+          <Text>Main Content Goes Here</Text>
+        )}
+      </View>
+
+      <View style={styles.bottomBar}>
         <Link href="/home/plants" asChild>
-          <Pressable style={styles.menuItem}>
-            <Text style={styles.menuText}>My plants</Text>
-          </Pressable>
+          <Pressable
+            style={[styles.circle, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          />
         </Link>
+        <View style={styles.gap} />
+
         <Link href="/home/explore" asChild>
-          <Pressable style={styles.menuItem}>
-            <Text style={styles.menuText}>Explore</Text>
-          </Pressable>
+          <Pressable
+            style={[styles.circle, selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+          />
         </Link>
+        <View style={styles.gap} />
+
         <Link href="/home/account" asChild>
-          <Pressable style={styles.menuItem}>
-            <Text style={styles.menuText}>My Account</Text>
-          </Pressable>
-          </Link>
-        </View>
+          <Pressable
+            style={[styles.circle, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+          />
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/settings" asChild>
+          <Pressable
+            style={[styles.circle, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+          />
+        </Link>
       </View>
     </View>
   );
@@ -36,54 +58,37 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#AECBA4',
+    position: 'relative',
   },
-
-  startingImage: {
-   resizeMode: 'center',
-   heigh:100,
-   width: 200,
-   alignSelf: 'center',
-   
-    
-  },
-
-  backgroundImage: {
+  contentContainer: {
     flex: 1,
-    resizeMode: 'contain', 
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(174,203,164,0.8)', 
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 20,
-  },
-  menuContainer: {
-    width: '80%',
-    marginBottom: 20,
-  },
-  menuItem: {
-    padding: 20,
-    marginVertical: 10,
-    backgroundColor: '#4CAF50', 
-    borderRadius: 10,
+  bottomBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
+    backgroundColor: '#f0f0f0',
+    height: 60,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
-  menuText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#3498db',
+  },
+  selectedCircle: {
+    backgroundColor: '#2ecc71', // Change color for the selected circle
+  },
+  gap: {
+    width: 10,
   },
 });
 
+  
 export default HomePage;
