@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 const PlantScreen = ({ navigation }) => { // Add navigation as a prop
   // Dummy data for plant statistics
   const plantStatistics = [
-    { title: 'Humidity', percentage: Math.floor(Math.random() * 100), color: 'blue' },
-    { title: 'Nutrients', percentage: Math.floor(Math.random() * 100), color: 'green' },
-    { title: 'Water', percentage: Math.floor(Math.random() * 100), color: 'orange' },
+    { title: 'Humidity', percentage: Math.floor(Math.random() * 100), color: '#7AA78E' },
+    { title: 'Nutrients', percentage: Math.floor(Math.random() * 100), color: '#72BF7A' },
+    { title: 'Water', percentage: Math.floor(Math.random() * 100), color: '#666666' },
   ];
 
   return (
@@ -25,9 +27,9 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
       {/* Plant Image and Growth Percentage */}
       <View style={styles.plantContainer}>
         <View style={styles.outerCircle}>
-          <Image source={{uri: 'https://www.rawpixel.com/image/12701460/png-plant-leaf-houseplant-generated-image-rawpixel'}} style={styles.plantImage} />
+          <Image source={require('../../assets/images/plant.jpg')} style={styles.plantImage} />
+          <Text style={styles.growthPercentage}>Growth Percentage%</Text>
         </View>
-        <Text>Growth Percentage: XX%</Text>
       </View>
 
       {/* Plant Statistics */}
@@ -38,32 +40,37 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
           renderItem={({ item }) => (
             <View style={styles.statItem}>
               <View style={[styles.bullet, { backgroundColor: item.color }]} />
-              <Text style={styles.statTitle}>{item.title}:</Text>
-              <Text>{item.percentage}%</Text>
+              <Text style={styles.statTitle}>{item.title}</Text>
+              <Text style={styles.statPercentage}>{item.percentage}%</Text>
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
 
+      {/* Additional Information Box */}
+      <View style={styles.additionalInfoBox}>
+        <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
+      </View>
+
       {/* Bottom Menu Bar */}
       <View style={styles.bottomMenu}>
         {/* Icons for different screens */}
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          {/* Icon for Profile */}
-          <Image source={{uri: "https://www.rawpixel.com/image/3012376/free-illustration-png-person-icon-profile-user"}} style={styles.icon} />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          {/* Icon for Home */}
-          <Image source={{uri: "https://www.rawpixel.com/image/2898371/free-illustration-png-house-icon-household"}} style={styles.icon} />
+          {/* Circle for Home */}
+          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          {/* Icon for Plant */}
-          <Image source={{uri:"https://www.rawpixel.com/image/3072731/free-illustration-png-plant-icon-leaf-botanical"}} style={styles.icon} />
+          {/* Circle for Plant */}
+          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+          {/* Circle for Profile */}
+          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          {/* Icon for App Store */}
-          <Image source={{ uri:'https://www.rawpixel.com/image/3012305/free-illustration-png-stores-icon-shopping-shop'}} style={styles.icon} />
+          {/* Circle for App Store */}
+          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
         </TouchableOpacity>
       </View>
     </View>
@@ -73,7 +80,8 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F6F6F6',
+    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',
@@ -83,7 +91,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 34,
   },
   plantContainer: {
     alignItems: 'center',
@@ -94,9 +102,11 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: '#0F4761',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
+    position: 'relative',
   },
   plantImage: {
     width: 150,
@@ -104,18 +114,28 @@ const styles = StyleSheet.create({
     borderRadius: 75,
     resizeMode: 'contain',
   },
+  growthPercentage: {
+    position: 'absolute',
+    fontSize: 14,
+    bottom: 30,
+  },
   statisticsContainer: {
     paddingHorizontal: 20,
+    marginTop: 20,
   },
   statisticsTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   statItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
+    fontSize: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#EDA806',
+    marginTop: 5
   },
   bullet: {
     width: 10,
@@ -124,21 +144,40 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   statTitle: {
-    marginRight: 10,
+    marginRight: 'auto', // Push the percentage to the right
+    fontSize: 18,
+  },
+  statPercentage: {
+    marginLeft: 'auto', // Align the percentage to the right
+    fontSize: 18,
+  },
+  additionalInfoBox: {
+    backgroundColor: '#72BF7A',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginTop: 20,
+    borderRadius: 20,
+    width: 130
+  },
+  additionalInfoText: {
+    fontSize: 16,
   },
   bottomMenu: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'white',
-    borderTopWidth: 1, // Add border to separate bottom menu from content
-    borderTopColor: '#ccc', // Use a light color for the border
-    paddingVertical: 10, // Increase padding to make it more visible
+    backgroundColor: '#8DA197',
+    borderTopWidth: 2,
+    borderTopColor: '#ccc',
+    paddingVertical: 10,
+    width: screenWidth,
+    marginTop: 20
+    
   },
-  icon: {
-    width: 50,
-    height: 50,
-    resizeMode: 'contain',
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
 });
 
