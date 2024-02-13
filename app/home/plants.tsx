@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native'
 
-const PlantScreen = () => {
+const PlantScreen = ({ navigation }) => { // Add navigation as a prop
   // Dummy data for plant statistics
   const plantStatistics = [
     { title: 'Humidity', percentage: Math.floor(Math.random() * 100), color: 'blue' },
@@ -52,19 +51,19 @@ const PlantScreen = () => {
         {/* Icons for different screens */}
         <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
           {/* Icon for Profile */}
-          <Image source={require('../../assets/images/profile_icon.jpg')} style={styles.icon} />
+          <Image source={{uri: "https://www.rawpixel.com/image/3012376/free-illustration-png-person-icon-profile-user"}} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
           {/* Icon for Home */}
-          <Image source={require("../../assets/images/homepage_icon.jpg")} style={styles.icon} />
+          <Image source={{uri: "https://www.rawpixel.com/image/2898371/free-illustration-png-house-icon-household"}} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
           {/* Icon for Plant */}
-          <Image source={require("../../assets/images/plant_icon.png")} style={styles.icon} />\
+          <Image source={{uri:"https://www.rawpixel.com/image/3072731/free-illustration-png-plant-icon-leaf-botanical"}} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
           {/* Icon for App Store */}
-          <Image source={require("../../assets/images/store_icon.jpg")} style={styles.icon} />
+          <Image source={{ uri:'https://www.rawpixel.com/image/3012305/free-illustration-png-stores-icon-shopping-shop'}} style={styles.icon} />
         </TouchableOpacity>
       </View>
     </View>
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',
@@ -132,8 +130,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingBottom: 20,
     backgroundColor: 'white',
+    borderTopWidth: 1, // Add border to separate bottom menu from content
+    borderTopColor: '#ccc', // Use a light color for the border
+    paddingVertical: 10, // Increase padding to make it more visible
   },
   icon: {
     width: 50,
