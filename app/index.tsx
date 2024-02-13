@@ -24,7 +24,7 @@ const HomePage = () => {
           <Pressable
             style={[styles.circle, selectedButton === 'Button 1' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 1')}
-          />
+          ><Text>Plants</Text></Pressable>
         </Link>
         <View style={styles.gap} />
 
@@ -32,7 +32,7 @@ const HomePage = () => {
           <Pressable
             style={[styles.circle, selectedButton === 'Button 2' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 2')}
-          />
+            ><Text>Explore</Text></Pressable>
         </Link>
         <View style={styles.gap} />
 
@@ -40,7 +40,7 @@ const HomePage = () => {
           <Pressable
             style={[styles.circle, selectedButton === 'Button 3' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 3')}
-          />
+            ><Text>Account</Text></Pressable>
         </Link>
         <View style={styles.gap} />
 
@@ -48,7 +48,7 @@ const HomePage = () => {
           <Pressable
             style={[styles.circle, selectedButton === 'Button 4' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 4')}
-          />
+            ><Text>Settings</Text></Pressable>
         </Link>
       </View>
     </View>
