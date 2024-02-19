@@ -27,7 +27,7 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
       {/* Plant Image and Growth Percentage */}
       <View style={styles.plantContainer}>
         <View style={styles.outerCircle}>
-          <Image source={require('../../assets/images/plant.jpeg')} style={styles.plantImage} />
+          <Image source={{uri: 'https://www.rawpixel.com/image/12701460/png-plant-leaf-houseplant-generated-image-rawpixel'}} style={styles.plantImage} />
           <Text style={styles.growthPercentage}>Growth Percentage%</Text>
         </View>
       </View>
@@ -47,29 +47,24 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
-
       {/* Additional Information Box */}
-      <View style={styles.additionalInfoBox}>
+      <TouchableOpacity style={styles.additionalInfoBox} onPress={() => console.log('Additional Info Pressed') }>
         <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
-      </View>
+      </TouchableOpacity>
 
       {/* Bottom Menu Bar */}
       <View style={styles.bottomMenu}>
         {/* Icons for different screens */}
         <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          {/* Circle for Home */}
           <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          {/* Circle for Plant */}
           <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          {/* Circle for Profile */}
           <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          {/* Circle for App Store */}
           <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
         </TouchableOpacity>
       </View>
