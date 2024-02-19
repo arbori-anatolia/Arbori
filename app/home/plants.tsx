@@ -27,7 +27,7 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
       {/* Plant Image and Growth Percentage */}
       <View style={styles.plantContainer}>
         <View style={styles.outerCircle}>
-          <Image source={require('../../assets/images/plant.jpg')} style={styles.plantImage} />
+          <Image source={require('../../assets/images/plant.jpeg')} style={styles.plantImage} />
           <Text style={styles.growthPercentage}>Growth Percentage%</Text>
         </View>
       </View>
