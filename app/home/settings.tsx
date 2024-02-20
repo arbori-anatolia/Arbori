@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import NavBar from '../components/navigationBar';
 
 const PlantSettingsScreen = () => {
   return (
@@ -37,15 +38,7 @@ const PlantSettingsScreen = () => {
           <Text style={styles.removeText}>Remove</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.bottomMenu}>
-        {/* Bottom Menu Bar */}
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-      </View>
+      <NavBar/>
     </View>
   );
 };

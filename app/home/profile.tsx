@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import NavBar from '../components/navigationBar';
 
 const ProfilePage = ({ navigation }) => {
   return (
@@ -11,7 +12,7 @@ const ProfilePage = ({ navigation }) => {
         <Text style={styles.headerTitle}>Profile</Text>
       </View>
       <View style={styles.profileInfo}>
-        <Image source={require('../../assets/images/profileicon.png')} />
+        <Image source={require('../../assets/images/profileicon.png')} style={styles.profileImage} />
         <View>
           <Text style={styles.userName}>User Name</Text>
           <Text style={styles.subscription}>Subscription Type</Text>
@@ -22,7 +23,7 @@ const ProfilePage = ({ navigation }) => {
       </View>
       <View style={styles.myPlants}>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant1.png')}  />
+          <Image source={require('../../assets/images/plant1.png')} style={styles.plantImage} />
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 1</Text>
             <Text style={styles.plantTime}>1 day ago</Text>
@@ -31,7 +32,7 @@ const ProfilePage = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant2.png')}/>
+          <Image source={require('../../assets/images/plant2.png')} style={styles.plantImage}/>
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 2</Text>
             <Text style={styles.plantTime}>2 days ago</Text>
@@ -40,7 +41,7 @@ const ProfilePage = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant3.png')}  />
+          <Image source={require('../../assets/images/plant3.png')} style={styles.plantImage} />
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 3</Text>
             <Text style={styles.plantTime}>3 days ago</Text>
@@ -49,25 +50,7 @@ const ProfilePage = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={styles.bottomMenu}>
-        {/* Bottom Menu Bar */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          {/* Circle for Home */}
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          {/* Circle for Plant */}
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          {/* Circle for Profile */}
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          {/* Circle for App Store */}
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-      </View>
+      <NavBar/>
     </View>
   );
 };

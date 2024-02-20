@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, Pressable } from 'react-native';
 import { Link } from 'expo-router';
+import NavBar from './components/navigationBar';
+
+
 
 const HomePage = () => {
   const [selectedButton, setSelectedButton] = useState(null);
@@ -19,38 +22,9 @@ const HomePage = () => {
         )}
       </View>
 
-      <View style={styles.bottomBar}>
-        <Link href="/home/plants" asChild>
-          <Pressable
-            style={[styles.circle, selectedButton === 'Button 1' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 1')}
-          ><Text>Plants</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
+      <NavBar/>
 
-        <Link href="/home/explore" asChild>
-          <Pressable
-            style={[styles.circle, selectedButton === 'Button 2' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 2')}
-            ><Text>Explore</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
 
-        <Link href="/home/account" asChild>
-          <Pressable
-            style={[styles.circle, selectedButton === 'Button 3' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 3')}
-            ><Text>Account</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/settings" asChild>
-          <Pressable
-            style={[styles.circle, selectedButton === 'Button 4' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 4')}
-            ><Text>Settings</Text></Pressable>
-        </Link>
-      </View>
     </View>
   );
 };

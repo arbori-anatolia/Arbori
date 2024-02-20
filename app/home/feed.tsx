@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
+import NavBar from '../components/navigationBar';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -67,21 +68,8 @@ const PlantScreen = ({ navigation }) => {
       </TouchableOpacity>
 
       {/* Bottom Menu Bar */}
-      <View style={styles.bottomMenu}>
-        {/* Icons for different screens */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-      </View>
+      <NavBar/>
+
     </View>
   );
 };

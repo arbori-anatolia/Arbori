@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions, Pressable } from 'react-native';
+import NavBar from '../components/navigationBar';
+import { Link } from 'expo-router';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -19,9 +21,11 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
           <Text>Back</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Plant #1</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('NextScreen')}>
-          <Text>Next</Text>
-        </TouchableOpacity>
+        <Link href="/home/settings" asChild>
+        <Pressable >
+          <Text>Settings</Text>
+        </Pressable>
+        </Link>
       </View>
 
       {/* Plant Image and Growth Percentage */}
@@ -53,21 +57,7 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
       </TouchableOpacity>
 
       {/* Bottom Menu Bar */}
-      <View style={styles.bottomMenu}>
-        {/* Icons for different screens */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-      </View>
+      <NavBar/>
     </View>
   );
 };
