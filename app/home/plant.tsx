@@ -1,7 +1,14 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions,Pressable } from 'react-native';
+import { Link } from 'expo-router';
 
 const screenWidth = Dimensions.get('window').width;
+const [selectedButton, setSelectedButton] = useState(null);
+
+const handleButtonPress = (buttonName) => {
+  setSelectedButton(buttonName);
+};
+
 
 const PlantScreen = ({ navigation }) => { // Add navigation as a prop
   // Dummy data for plant statistics
@@ -14,20 +21,22 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text>Back</Text>
-        </TouchableOpacity>
+      <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.header] }
+          ><Text>Back</Text></Pressable>
+        </Link>
         <Text style={styles.headerTitle}>Plant #1</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('NextScreen')}>
-          <Text>Next</Text>
-        </TouchableOpacity>
-      </View>
+        <Link href="/home/settings" asChild>
+          <Pressable
+            style={[styles.header] }
+          ><Text>Settings</Text></Pressable>
+        </Link>
 
-      {/* Plant Image and Growth Percentage */}
+        {/* Plant Image and Growth Percentage */}
       <View style={styles.plantContainer}>
         <View style={styles.outerCircle}>
-          <Image source={require('../../assets/images/plant.jpeg')} />
+          <Image source={require('../../assets/images/plant1.png')} />
           <Text style={styles.growthPercentage}>Growth Percentage%</Text>
         </View>
       </View>
@@ -51,22 +60,37 @@ const PlantScreen = ({ navigation }) => { // Add navigation as a prop
       <TouchableOpacity style={styles.additionalInfoBox} onPress={() => console.log('Additional Info Pressed') }>
         <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
       </TouchableOpacity>
-
-      {/* Bottom Menu Bar */}
       <View style={styles.bottomMenu}>
-        {/* Icons for different screens */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
+        <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          ><Text>Home</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/explore" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+            ><Text>Explore</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/account" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+            ><Text>Account</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/profile" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+            ><Text>Profile</Text></Pressable>
+        </Link>
       </View>
     </View>
   );
@@ -160,19 +184,24 @@ const styles = StyleSheet.create({
   bottomMenu: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#8DA197',
-    borderTopWidth: 2,
-    borderTopColor: '#ccc',
     paddingVertical: 10,
-    width: screenWidth,
-    marginTop: 20
-    
+    borderTopWidth: 1,
+    borderTopColor: 'lightgrey',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  selectedCircle: {
+    backgroundColor: '#2ecc71', // Change color for the selected circle
+  },
+  gap: {
+    width: 10,
   },
 });
 

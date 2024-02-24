@@ -1,9 +1,10 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions } from 'react-native';
 
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 const screenWidth = Dimensions.get('window').width;
 
-const PlantScreen = ({ navigation }) => {
+const StartingScreen = ({ navigation }) => {
   // Dummy data for plant statistics
   const plantStatistics = [
     { title: 'Humidity', percentage: Math.floor(Math.random() * 100), color: '#7AA78E' },
@@ -13,29 +14,28 @@ const PlantScreen = ({ navigation }) => {
 
   // Dummy data for plant images
   const plantImages = [
-    { uri: 'https://www.rawpixel.com/image/12701460/png-plant-leaf-houseplant-generated-image-rawpixel' },
-    { uri: 'https://www.rawpixel.com/image/12701460/png-plant-leaf-houseplant-generated-image-rawpixel' },
-    { uri: 'https://www.rawpixel.com/image/12701460/png-plant-leaf-houseplant-generated-image-rawpixel' },
+    { source: require('../../assets/images/plant1.png') },
+    { source: require('../../assets/images/plant2.png') },
+    { source: require('../../assets/images/plant3.png') },
   ];
+
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonPress = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
+
 
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text>Back</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>My Plants</Text>
-        <View />
-      </View>
-
-      {/* Plant Images */}
       <View style={styles.plantImagesContainer}>
         {plantImages.map((plant, index) => (
           <View key={index} style={styles.outerCircle}>
-            <TouchableOpacity style={styles.plantImageContainer}>
-              <Image source={{ uri: plant.uri }} style={styles.plantImage} />
-            </TouchableOpacity>
+            <Link href="/home/start" asChild>
+              <Pressable style={styles.plantImageContainer} >
+                 <Image source={require('../../assets/images/plant3.png') } style={styles.plantImage} />
+              </Pressable>
+            </Link>            
           </View>
         ))}
       </View>
@@ -66,25 +66,47 @@ const PlantScreen = ({ navigation }) => {
         <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
       </TouchableOpacity>
 
-      {/* Bottom Menu Bar */}
+      
+      
+      return (
       <View style={styles.bottomMenu}>
-        {/* Icons for different screens */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
+        <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          ><Text>Home</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/explore" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+            ><Text>Explore</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/account" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+            ><Text>Account</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/profile" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+            ><Text>Profile</Text></Pressable>
+        </Link>
       </View>
     </View>
   );
 };
+
+      
+
 
 const styles = StyleSheet.create({
   container: {
@@ -167,11 +189,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   statTitle: {
-    marginRight: 'auto', // Push the percentage to the right
+    marginRight: 'auto', 
     fontSize: 18,
   },
   statPercentage: {
-    marginLeft: 'auto', // Align the percentage to the right
+    marginLeft: 'auto', 
     fontSize: 18,
   },
   additionalInfoBox: {
@@ -188,21 +210,26 @@ const styles = StyleSheet.create({
   bottomMenu: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#8DA197',
-    borderTopWidth: 2,
-    borderTopColor: '#ccc',
     paddingVertical: 10,
-    width: screenWidth,
-    marginTop: 20
-    
+    borderTopWidth: 1,
+    borderTopColor: 'lightgrey',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  selectedCircle: {
+    backgroundColor: '#2ecc71', // Change color for the selected circle
+  },
+  gap: {
+    width: 10,
   },
 });
 
-export default PlantScreen;
+export default StartingScreen;
 

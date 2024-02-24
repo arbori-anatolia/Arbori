@@ -1,7 +1,13 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable} from 'react-native';
+import { Link } from 'expo-router';
 
 const ProfilePage = ({ navigation }) => {
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonPress = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -50,27 +56,42 @@ const ProfilePage = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.bottomMenu}>
-        {/* Bottom Menu Bar */}
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-          {/* Circle for Home */}
-          <View style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('PlantScreen')}>
-          {/* Circle for Plant */}
-          <View style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
-          {/* Circle for Profile */}
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AppStoreScreen')}>
-          {/* Circle for App Store */}
-          <View style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        </TouchableOpacity>
+        <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          ><Text>Home</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/explore" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+            ><Text>Explore</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/account" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+            ><Text>Account</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/profile" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+            ><Text>Profile</Text></Pressable>
+        </Link>
       </View>
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -102,8 +123,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   profileImage: {
-    width: 80,
-    height: 80,
+    width: 20,
+    height: 20,
     borderRadius: 40,
     marginRight: 20,
   },
@@ -142,8 +163,8 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgrey',
   },
   plantImage: {
-    width: 60,
-    height: 60,
+    width: 10,
+    height: 10,
     borderRadius: 30,
     marginRight: 10,
   },
@@ -187,6 +208,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
+  },
+  selectedCircle: {
+    backgroundColor: '#2ecc71', // Change color for the selected circle
+  },
+  gap: {
+    width: 10,
   },
 });
 

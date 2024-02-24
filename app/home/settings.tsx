@@ -1,9 +1,20 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable} from 'react-native';
+import { Link } from 'expo-router';
 
 const PlantSettingsScreen = () => {
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const handleButtonPress = (buttonName) => {
+    setSelectedButton(buttonName);
+  };
   return (
     <View style={styles.container}>
+      <Link href="/home/plants" asChild>
+          <Pressable
+            style={[styles.header] }
+          ><Text>Back</Text></Pressable>
+        </Link>
       <View style={styles.topSection}>
         <View style={styles.growthCircle}>
           {/* Image of the plant */}
@@ -39,12 +50,36 @@ const PlantSettingsScreen = () => {
       </View>
 
       <View style={styles.bottomMenu}>
-        {/* Bottom Menu Bar */}
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#A9C5B7' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#7DC98B' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
-        <TouchableOpacity style={[styles.circle, { backgroundColor: '#9C8410E5' }]} />
+        <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          ><Text>Home</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/explore" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+            ><Text>Explore</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/account" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+            ><Text>Account</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/profile" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+            ><Text>Profile</Text></Pressable>
+        </Link>
       </View>
     </View>
   );
@@ -59,6 +94,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 20,
     backgroundColor: '#7AA78E',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 30,
   },
   growthCircle: {
     width: 150,
@@ -115,6 +157,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
+  },
+  selectedCircle: {
+    backgroundColor: '#2ecc71', // Change color for the selected circle
+  },
+  gap: {
+    width: 10,
   },
 });
 
