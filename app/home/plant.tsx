@@ -10,8 +10,7 @@ const handleButtonPress = (buttonName) => {
 };
 
 
-const PlantScreen = ({ navigation }) => { // Add navigation as a prop
-  // Dummy data for plant statistics
+const PlantScreen = ({ navigation }) => { 
   const plantStatistics = [
     { title: 'Humidity', percentage: Math.floor(Math.random() * 100), color: '#7AA78E' },
     { title: 'Nutrients', percentage: Math.floor(Math.random() * 100), color: '#72BF7A' },
@@ -163,11 +162,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   statTitle: {
-    marginRight: 'auto', // Push the percentage to the right
+    marginRight: 'auto', 
     fontSize: 18,
   },
   statPercentage: {
-    marginLeft: 'auto', // Align the percentage to the right
+    marginLeft: 'auto', 
     fontSize: 18,
   },
   additionalInfoBox: {
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   selectedCircle: {
-    backgroundColor: '#2ecc71', // Change color for the selected circle
+    backgroundColor: '#2ecc71', 
   },
   gap: {
     width: 10,

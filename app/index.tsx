@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   selectedCircle: {
-    backgroundColor: '#2ecc71', // Change color for the selected circle
+    backgroundColor: '#2ecc71', 
   },
   gap: {
     width: 10,
