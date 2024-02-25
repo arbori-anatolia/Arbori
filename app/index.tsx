@@ -17,7 +17,7 @@ const HomePage = () => {
       <View style={styles.contentContainer}>
       <Text style={styles.title}>Arbori</Text>
         <Image
-          source={require('../../assets/images/logo.png')} 
+          source={require('../assets/images/logo.png')} 
           style={styles.photo}
         />
         <Text style={styles.welcomeText}>Welcome back @username</Text>
