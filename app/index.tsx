@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, Pressable } from 'react-native';
 import { Link } from 'expo-router';
+import NavBar from './components/navigationBar';
+
+
 
 const HomePage = () => {
   const [selectedButton, setSelectedButton] = useState(null);

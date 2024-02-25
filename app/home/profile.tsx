@@ -17,7 +17,7 @@ const ProfilePage = ({ navigation }) => {
         <Text style={styles.headerTitle}>Profile</Text>
       </View>
       <View style={styles.profileInfo}>
-        <Image source={require('../../assets/images/profileicon.png')} />
+        <Image source={require('../../assets/images/profileicon.png')} style={styles.profileImage} />
         <View>
           <Text style={styles.userName}>User Name</Text>
           <Text style={styles.subscription}>Subscription Type</Text>
@@ -28,7 +28,7 @@ const ProfilePage = ({ navigation }) => {
       </View>
       <View style={styles.myPlants}>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant1.png')}  />
+          <Image source={require('../../assets/images/plant1.png')} style={styles.plantImage} />
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 1</Text>
             <Text style={styles.plantTime}>1 day ago</Text>
@@ -37,7 +37,7 @@ const ProfilePage = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant2.png')}/>
+          <Image source={require('../../assets/images/plant2.png')} style={styles.plantImage}/>
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 2</Text>
             <Text style={styles.plantTime}>2 days ago</Text>
@@ -46,7 +46,7 @@ const ProfilePage = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.plantItem}>
-          <Image source={require('../../assets/images/plant3.png')}  />
+          <Image source={require('../../assets/images/plant3.png')} style={styles.plantImage} />
           <View style={styles.plantInfo}>
             <Text style={styles.plantName}>Plant 3</Text>
             <Text style={styles.plantTime}>3 days ago</Text>
