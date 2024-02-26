@@ -58,19 +58,19 @@ const PlantSettingsScreen = () => {
         </Link>
         <View style={styles.gap} />
 
-        <Link href="/home/explore" asChild>
+        <Link href="/home/chat" asChild>
           <Pressable
             style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 2')}
-            ><Text>Explore</Text></Pressable>
+            ><Text>Chatbot</Text></Pressable>
         </Link>
         <View style={styles.gap} />
 
-        <Link href="/home/account" asChild>
+        <Link href="/home/plans" asChild>
           <Pressable
             style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
             onPress={() => handleButtonPress('Button 3')}
-            ><Text>Account</Text></Pressable>
+            ><Text>Plans</Text></Pressable>
         </Link>
         <View style={styles.gap} />
 

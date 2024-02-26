@@ -66,8 +66,38 @@ const StartingScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.additionalInfoBox} onPress={() => console.log('Additional Info Pressed')}>
         <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
       </TouchableOpacity>
+      <View style={styles.bottomMenu}>
+        <Link href="/home/start" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 1')}
+          ><Text>Home</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
 
-      <NavBar/>
+        <Link href="/home/chat" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 2')}
+            ><Text>Chatbot</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/plans" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 3')}
+            ><Text>Plans</Text></Pressable>
+        </Link>
+        <View style={styles.gap} />
+
+        <Link href="/home/profile" asChild>
+          <Pressable
+            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
+            onPress={() => handleButtonPress('Button 4')}
+            ><Text>Profile</Text></Pressable>
+        </Link>
+      </View>  
       
       
     </View>

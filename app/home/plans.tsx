@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity, Pressable} from 'react-native';
 import { Link } from 'expo-router';
-import NavBar from './components/navigationBar';
 
+const AppPage = () => {
+    const [selectedButton, setSelectedButton] = useState(null);
 
-
-const HomePage = () => {
-  const [selectedButton, setSelectedButton] = useState(null);
-
-  const handleButtonPress = (buttonName) => {
-    setSelectedButton(buttonName);
-  };
-
+    const handleButtonPress = (buttonName) => {
+      setSelectedButton(buttonName);
+    };
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-      <Text style={styles.title}>Arbori</Text>
-        <Image
-          source={require('../assets/images/logo.png')} 
-          style={styles.photo}
-        />
-        <Text style={styles.welcomeText}>Welcome back @username</Text>
+      <Text style={styles.header}>Subscription Plans</Text>
+      <View style={styles.content}>
+        <View style={[styles.textBox, styles.purpleBox]}>
+          <Text style={styles.title}>Premium</Text>
+          <Text style={styles.price}>19,99$/month</Text>
+          <View style={styles.bulletContainer}>
+            <Text style={styles.bulletPoint}>• Feature 1</Text>
+            <Text style={styles.bulletPoint}>• Feature 2</Text>
+            <Text style={styles.bulletPoint}>• Feature 3</Text>
+            {/* Add more features here */}
+          </View>
+        </View>
+        <View style={[styles.textBox, styles.greenBox]}>
+          <Text style={styles.title}>Standard</Text>
+          <Text style={styles.price}>free</Text>
+          <View style={styles.bulletContainer}>
+            <Text style={styles.bulletPoint}>• Feature A</Text>
+            <Text style={styles.bulletPoint}>• Feature B</Text>
+            <Text style={styles.bulletPoint}>• Feature C</Text>
+            {/* Add more features here */}
+          </View>
+        </View>
       </View>
-
       <View style={styles.bottomMenu}>
         <Link href="/home/start" asChild>
           <Pressable
@@ -62,30 +72,49 @@ const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative',
-    backgroundColor: 'ligth green'
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: 50, // Added padding to move content below header
+  },
+  header: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  content: {
+    alignItems: 'center',
+  },
+  textBox: {
+    width: 350,
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 20,
+  },
+  purpleBox: {
+    backgroundColor: 'purple',
+  },
+  greenBox: {
+    backgroundColor: 'green',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom: 20,
-    textAlign: 'center',
+    marginBottom: 10,
   },
-  photo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-  },
-  welcomeText: {
+  price: {
     fontSize: 18,
+    color: 'red',
+    marginBottom: 10,
+  },
+  bulletContainer: {
+    marginLeft: 15,
+  },
+  bulletPoint: {
+    fontSize: 16,
     color: 'white',
+    marginBottom: 5,
   },
   bottomMenu: {
     flexDirection: 'row',
@@ -111,6 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
- 
-  
-export default HomePage;
+export default AppPage;
