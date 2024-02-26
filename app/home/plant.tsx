@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet, Dimensions,Pressable } from 'react-native';
 import { Link } from 'expo-router';
-
-const screenWidth = Dimensions.get('window').width;
-const [selectedButton, setSelectedButton] = useState(null);
-
-const handleButtonPress = (buttonName) => {
-  setSelectedButton(buttonName);
-};
+import NavBar from '../components/navigationBar';
 
 
 const PlantScreen = ({ navigation }) => { 
@@ -20,23 +14,20 @@ const PlantScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Link href="/home/start" asChild>
-          <Pressable
-            style={[styles.header] }
-          ><Text>Back</Text></Pressable>
+      <View style={styles.header}>
+      <Link href="/home/plants" asChild>
+          <Pressable><Text>Back</Text></Pressable>
         </Link>
         <Text style={styles.headerTitle}>Plant #1</Text>
         <Link href="/home/settings" asChild>
-          <Pressable
-            style={[styles.header] }
-          ><Text>Settings</Text></Pressable>
+          <Pressable><Text>Settings</Text></Pressable>
         </Link>
-
+        </View>
         {/* Plant Image and Growth Percentage */}
       <View style={styles.plantContainer}>
         <View style={styles.outerCircle}>
-          <Image source={require('../../assets/images/plant1.png')} />
-          <Text style={styles.growthPercentage}>Growth Percentage%</Text>
+          <Image source={require('../../assets/images/plant1.png')} style={styles.plantImage}/>
+          <Text style={styles.growthPercentage}>30%</Text>
         </View>
       </View>
 
@@ -46,11 +37,12 @@ const PlantScreen = ({ navigation }) => {
         <FlatList
           data={plantStatistics}
           renderItem={({ item }) => (
-            <View style={styles.statItem}>
-              <View style={[styles.bullet, { backgroundColor: item.color }]} />
-              <Text style={styles.statTitle}>{item.title}</Text>
-              <Text style={styles.statPercentage}>{item.percentage}%</Text>
-            </View>
+
+                <View style={styles.statItem}>
+                  <View style={[styles.bullet, { backgroundColor: item.color }]} />
+                  <Text style={styles.statTitle}>{item.title}</Text>
+                  <Text style={styles.statPercentage}>{item.percentage}%</Text>
+                </View>
           )}
           keyExtractor={(item, index) => index.toString()}
         />
@@ -59,38 +51,7 @@ const PlantScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.additionalInfoBox} onPress={() => console.log('Additional Info Pressed') }>
         <Text style={styles.additionalInfoText}> Try the AI chatbot !! </Text>
       </TouchableOpacity>
-      <View style={styles.bottomMenu}>
-        <Link href="/home/start" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 1')}
-          ><Text>Home</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/chat" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 2')}
-            ><Text>Chatbot</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/plans" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 3')}
-            ><Text>Plans</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/profile" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 4')}
-            ><Text>Profile</Text></Pressable>
-        </Link>
-      </View>
+      <NavBar/>
     </View>
   );
 };
@@ -100,6 +61,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F6F6F6',
     justifyContent: 'space-between',
+  },
+  headerWrapper: {
+    
   },
   header: {
     flexDirection: 'row',
@@ -127,15 +91,16 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   plantImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+    width: 196,
+    height: 196,
+    borderRadius: 100,
     resizeMode: 'contain',
   },
   growthPercentage: {
-    position: 'absolute',
-    fontSize: 14,
-    bottom: 30,
+    fontSize: 32,
+    fontWeight: '500',
+    bottom: 12,
+    position: 'absolute'
   },
   statisticsContainer: {
     paddingHorizontal: 20,

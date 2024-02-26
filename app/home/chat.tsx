@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity, Pressable} from 'react-native';
 import { Link } from 'expo-router';
+import NavBar from '../components/navigationBar';
 
 const ChatScreen = () => {
   const [selectedButton, setSelectedButton] = useState(null);
@@ -23,6 +24,7 @@ const ChatScreen = () => {
   };
 
   return (
+    <>
     <View style={styles.container}>
       <Text style={styles.header}>Plantbot</Text>
       <ScrollView contentContainerStyle={styles.chatContainer}>
@@ -49,47 +51,16 @@ const ChatScreen = () => {
           <Text style={styles.sendButtonText}>Send</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.bottomMenu}>
-        <Link href="/home/start" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#A9C5B7' }, selectedButton === 'Button 1' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 1')}
-          ><Text>Home</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/chat" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#7DC98B' },selectedButton === 'Button 2' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 2')}
-            ><Text>PlantBot</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/plans" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 3' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 3')}
-            ><Text>Plans</Text></Pressable>
-        </Link>
-        <View style={styles.gap} />
-
-        <Link href="/home/profile" asChild>
-          <Pressable
-            style={[styles.circle, { backgroundColor: '#9C8410E5' }, selectedButton === 'Button 4' && styles.selectedCircle]}
-            onPress={() => handleButtonPress('Button 4')}
-            ><Text>Profile</Text></Pressable>
-        </Link>
-      </View>
     </View>
-
+    <NavBar/>
+    </>
 
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '92.5%',
     backgroundColor: 'white',
     padding: 20, // Increased padding
   },
