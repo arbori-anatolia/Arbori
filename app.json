@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.triantafylloskountardas.Arbori"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,7 +34,16 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "c7058105-31f6-452e-be99-a862cd1a2e2e"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c7058105-31f6-452e-be99-a862cd1a2e2e"
     }
   }
 }

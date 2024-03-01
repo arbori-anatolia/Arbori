@@ -9,15 +9,15 @@ const HomePage = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
+      <View style={styles.contentcontainer}>
       <Text style={styles.title}>Arbori</Text>
         <Image
           source={require('../assets/images/logo.png')} 
           style={styles.photo}
         />
         <Text style={styles.welcomeText}>Welcome back @username</Text>
+        
       </View>
-
       <NavBar/>
     </View>
   );
@@ -25,7 +25,7 @@ const HomePage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: '92.5%',
+    height: '100%',
     position: 'relative',
     backgroundColor: 'ligth green'
   },
